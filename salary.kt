@@ -102,7 +102,7 @@ fun main(args: Array<String>) {
                 isResultCorrect = false
             }
         }
-        if (isResultCorrect === true) {
+        if (isResultCorrect === true && (endTime-startTime)/1000 < 5) {
             println("$inputFilename test passed!")
             if (salaries.size <= 50) {
                 println("Result:")
@@ -110,11 +110,16 @@ fun main(args: Array<String>) {
             }
 
         } else {
-            println("$inputFilename result not correct!")
-            println("Actual:")
-            println(Arrays.toString(salaries))
-            println("Expected:")
-            println(outputFileData)
+            if ((endTime-startTime)/1000 >= 5) {
+                println("$inputFilename 5 seconds time limit exceed!")
+            }
+            if (isResultCorrect == false) {
+                println("$inputFilename result not correct!")
+                println("Actual:")
+                println(Arrays.toString(salaries))
+                println("Expected:")
+                println(outputFileData)
+            }
             return
         }
 
